@@ -4,159 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-
-    <style>
-      body {
-        background-color: #004d40; /* Deep sea green */
-        color: #f5f5f5; /* Light text for contrast */
-        font-family: "Montserrat", sans-serif;
-      }
-
-      .title {
-        font-size: 30px;
-        font-weight: bold;
-      }
-
-      .moveicon {
-        background-color: transparent;
-        height: 100px;
-        border-radius: 25px;
-        margin: 15px;
-        cursor: pointer;
-      }
-
-      .b4 {
-        margin-top: 50px;
-        font-size: 20px;
-        border-radius: 50px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-left: 20px;
-        padding-right: 20px;
-        background-color: rgba(214, 214, 228, 0.913);
-        font-weight: bold;
-        font-family: sans-serif;
-        cursor: pointer;
-        color: darkred;
-      }
-    </style>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <p class="title">Rock Paper Scissors</p>
 
-    <button
-      class="b1"
-      onclick=" 
-       PlayGame('Rock');
-    "
-    >
+    <button class="b1" onclick="PlayGame('Rock')">
       <img src="images.png" class="moveicon" />
     </button>
-    <button
-      class="b2"
-      onclick=" 
-       PlayGame('Paper');
-"
-    >
+    <button class="b2" onclick="PlayGame('Paper')">
       <img src="paperimage.png" class="moveicon" />
     </button>
-    <button
-      class="b3"
-      onclick=" 
-          PlayGame('Scissor');
-"
-    >
+    <button class="b3" onclick="PlayGame('Scissor')">
       <img src="scissors.png" class="moveicon" />
     </button>
+
     <div>
       <button
         class="b4"
-        onclick="
-    PlayGame('Reset Score')
-    localStorage.removeItem('Score');"
+        onclick="PlayGame('Reset Score'); localStorage.removeItem('Score');"
       >
         Reset Score
       </button>
     </div>
 
-    <script>
-      /*   Here it is in -> onclick we will use math.random() -> it generates different
-           random nums between 0 and 1 
-      */
-
-      /*   We will say that from 
-            0  -> 1/3   is for a rock 
-           1/3 -> 2/3   is for a paper
-           2/3 -> 1     is for a scissor
-      */
-      const Score = {
-        wins: 0,
-        lose: 0,
-        ties: 0,
-      };
-
-      // this is a string to convert it into an object we should use json.pasrse console.log(localStorage.getItem("Score"));
-      console.log(JSON.parse(localStorage.getItem("Score")));
-
-      function PlayGame(PlayerMove) {
-        let ComputerMove = pickComputerMove();
-        let Status = "";
-        if (PlayerMove === "Scissor") {
-          if (ComputerMove === "Rock") {
-            Status = "You lose";
-          } else if (ComputerMove === "Paper") {
-            Status = "You win";
-          } else if (ComputerMove === "Scissor") {
-            Status = "Tie";
-          }
-        } else if (PlayerMove === "Paper") {
-          if (ComputerMove === "Rock") {
-            Status = "You win";
-          } else if (ComputerMove === "Paper") {
-            Status = "Tie";
-          } else if (ComputerMove === "Scissor") {
-            Status = "You lose";
-          }
-        } else if (PlayerMove === "Rock") {
-          if (ComputerMove === "Rock") {
-            Status = "Tie";
-          } else if (ComputerMove === "Paper") {
-            Status = "You lose";
-          } else if (ComputerMove === "Scissor") {
-            Status = "You win";
-          }
-        } else if (PlayerMove === "Reset Score") {
-          Score.wins = Score.lose = Score.ties = 0;
-        }
-
-        if (Status === "You win") {
-          Score.wins++;
-        } else if (Status === "You lose") {
-          Score.lose++;
-        } else if (Status === "Tie") {
-          Score.ties++;
-        }
-
-        localStorage.setItem("Score", JSON.stringify(Score));
-        alert(
-          `You picked ${PlayerMove}, Computer Picked ${ComputerMove}.${Status}
-           Wins :${Score.wins} , Loses:${Score.lose} , Ties: ${Score.ties}
-           `
-        );
-      }
-      function pickComputerMove() {
-        const randomnum = Math.random();
-        let ComputerMove = "";
-        if (randomnum >= 0 && randomnum < 1 / 3) {
-          ComputerMove = "Rock";
-        } else if (randomnum >= 1 / 3 && randomnum < 2 / 3) {
-          ComputerMove = "Paper";
-        } else if (randomnum >= 2 / 3 && randomnum < 1) {
-          ComputerMove = "Scissor";
-        }
-        return ComputerMove;
-      }
-    </script>
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
   </body>
 </html>
